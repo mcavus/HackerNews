@@ -21,31 +21,31 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show HN: TinyGo – LLVM-based Go compiler for microcontrollers" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jk4-Jo-R9H">
-                        <rect key="frame" x="20" y="16" width="457.5" height="18"/>
+                        <rect key="frame" x="20" y="21" width="457.5" height="18"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="https://github.com/aykevl/tinygo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a7d-2B-iQd">
-                        <rect key="frame" x="20" y="44" width="196" height="16"/>
+                        <rect key="frame" x="20" y="49" width="196" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="59 points by mcavus" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0sS-Jv-mn6">
-                        <rect key="frame" x="20" y="70" width="131" height="16"/>
+                        <rect key="frame" x="20" y="75" width="131" height="16"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                         <color key="textColor" red="0.94901960784313721" green="0.396078431372549" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="59m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztW-uX-1oS">
-                        <rect key="frame" x="176" y="70" width="29" height="16"/>
+                        <rect key="frame" x="176" y="75" width="29" height="16"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                         <color key="textColor" red="0.94901960780000005" green="0.39607843139999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="FR0-uw-Lgj">
-                        <rect key="frame" x="161" y="73" width="10" height="10"/>
+                        <rect key="frame" x="161" y="78" width="10" height="10"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="10" id="60k-Il-HML"/>
                             <constraint firstAttribute="height" constant="10" id="wZe-Z7-RPv"/>
@@ -83,10 +83,17 @@
                     <constraint firstItem="nv3-wS-hAD" firstAttribute="top" secondItem="g1F-2L-C64" secondAttribute="bottom" constant="10" id="toQ-Ft-Ozb"/>
                     <constraint firstItem="ztW-uX-1oS" firstAttribute="centerY" secondItem="FR0-uw-Lgj" secondAttribute="centerY" id="wT0-GM-bjp"/>
                     <constraint firstItem="g1F-2L-C64" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jk4-Jo-R9H" secondAttribute="trailing" constant="10" id="y0v-Vg-4Va"/>
-                    <constraint firstItem="jk4-Jo-R9H" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="yT0-NA-j3D"/>
+                    <constraint firstItem="jk4-Jo-R9H" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="yT0-NA-j3D"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="descendantsLabel" destination="nv3-wS-hAD" id="SE8-1P-1xF"/>
+                <outlet property="pointsAndByLabel" destination="0sS-Jv-mn6" id="3wG-1k-hm9"/>
+                <outlet property="timeLabel" destination="ztW-uX-1oS" id="eGh-gw-MWc"/>
+                <outlet property="titleLabel" destination="jk4-Jo-R9H" id="gKw-EA-FWu"/>
+                <outlet property="urlLabel" destination="a7d-2B-iQd" id="WGu-y2-Dwx"/>
+            </connections>
             <point key="canvasLocation" x="129" y="57"/>
         </tableViewCell>
     </objects>

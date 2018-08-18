@@ -14,6 +14,8 @@
 		67727DB22127077E009D4E17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67727DB02127077E009D4E17 /* LaunchScreen.storyboard */; };
 		67727DBE21286E79009D4E17 /* HNTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67727DBC21286E79009D4E17 /* HNTableViewCell.swift */; };
 		67727DBF21286E79009D4E17 /* HNTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67727DBD21286E79009D4E17 /* HNTableViewCell.xib */; };
+		67727DC1212890FA009D4E17 /* HNExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67727DC0212890FA009D4E17 /* HNExtensions.swift */; };
+		67BCAFFC2128D584000489F6 /* HNSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BCAFFB2128D584000489F6 /* HNSubmission.swift */; };
 		AB5D89AE92F41E386E8261F3 /* Pods_HackerNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0756C960AFB7F43FE1334ED2 /* Pods_HackerNews.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +31,8 @@
 		67727DB32127077E009D4E17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67727DBC21286E79009D4E17 /* HNTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HNTableViewCell.swift; sourceTree = "<group>"; };
 		67727DBD21286E79009D4E17 /* HNTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HNTableViewCell.xib; sourceTree = "<group>"; };
+		67727DC0212890FA009D4E17 /* HNExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HNExtensions.swift; sourceTree = "<group>"; };
+		67BCAFFB2128D584000489F6 /* HNSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HNSubmission.swift; sourceTree = "<group>"; };
 		75CFAF53BB941F3FEFD613D5 /* Pods-HackerNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNews/Pods-HackerNews.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +71,8 @@
 			children = (
 				67727DAB2127077C009D4E17 /* Main.storyboard */,
 				67727DA92127077C009D4E17 /* HNViewController.swift */,
+				67727DC0212890FA009D4E17 /* HNExtensions.swift */,
+				67BCAFFB2128D584000489F6 /* HNSubmission.swift */,
 				67727DBB21286E4E009D4E17 /* HNTableViewCell */,
 				67727DB921271003009D4E17 /* Resources */,
 			);
@@ -225,9 +231,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67BCAFFC2128D584000489F6 /* HNSubmission.swift in Sources */,
 				67727DAA2127077C009D4E17 /* HNViewController.swift in Sources */,
 				67727DA82127077C009D4E17 /* AppDelegate.swift in Sources */,
 				67727DBE21286E79009D4E17 /* HNTableViewCell.swift in Sources */,
+				67727DC1212890FA009D4E17 /* HNExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
