@@ -27,6 +27,15 @@ extension HNViewController: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let s = submissions[indexPath.row]
+        if let url = s.url {
+            
+        }
+    }
+    
     func configureTableView() {
         hnTableView.delegate = self
         hnTableView.dataSource = self
