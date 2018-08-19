@@ -90,6 +90,18 @@ extension HNViewController {
         submissions.append(s)
     }
     
+    func showActivityIndicator() {
+        hnActivityIndicator.startAnimating()
+        hnActivityIndicator.isHidden = false
+        hnTableView.isHidden = true
+    }
+    
+    func hideActivityIndicator() {
+        hnActivityIndicator.stopAnimating()
+        hnActivityIndicator.isHidden = true
+        hnTableView.isHidden = false
+    }
+    
     func retrieveTopStories() {
         let baseURL = "https://hacker-news.firebaseio.com/v0/"
         let endpoint = baseURL + "topstories" + ".json"
@@ -119,6 +131,7 @@ extension HNViewController {
                                     
                                     if self.submissions.count == submissionLimit {
                                         self.hnTableView.reloadData()
+                                        self.hideActivityIndicator()
                                         self.refreshControl.endRefreshing()
                                     }
                                 }

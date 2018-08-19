@@ -10,6 +10,7 @@ import UIKit
 
 class HNViewController: UIViewController {
     @IBOutlet weak var hnTableView: UITableView!
+    @IBOutlet weak var hnActivityIndicator: UIActivityIndicatorView!
     
     var submissions: [Submission] = []
     
@@ -26,5 +27,6 @@ class HNViewController: UIViewController {
         
         self.configureTableView()
         self.retrieveTopStories()
+        self.showActivityIndicator()
     }
 }
