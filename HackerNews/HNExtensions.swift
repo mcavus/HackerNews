@@ -27,8 +27,13 @@ extension HNViewController: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+    func configureTableView() {
+        hnTableView.delegate = self
+        hnTableView.dataSource = self
+        hnTableView.register(UINib(nibName: "HNTableViewCell", bundle: nil), forCellReuseIdentifier: "HNTableViewCell")
+        
+        hnTableView.rowHeight = UITableViewAutomaticDimension
+        hnTableView.estimatedRowHeight = 120
     }
 }
 
@@ -42,7 +47,9 @@ extension HNViewController {
     }
     
     func retrieveTopStories() {
+        let baseURL = "https://hacker-news.firebaseio.com/v0/"
         let endpoint = baseURL + "topstories" + ".json"
+        let submissionLimit = 29
         
         Alamofire.request(endpoint).responseJSON { (response) in
             // print(response.request!)
@@ -52,8 +59,8 @@ extension HNViewController {
                 if let responseValue = response.result.value {
                     let responseValueJSON = JSON(responseValue)
                     
-                    for i in 0...self.submissionLimit {
-                        let submissionEndpoint = self.baseURL + "item/" + String(responseValueJSON[i].int!) + ".json"
+                    for i in 0...submissionLimit {
+                        let submissionEndpoint = baseURL + "item/" + String(responseValueJSON[i].int!) + ".json"
                         Alamofire.request(submissionEndpoint).responseJSON(completionHandler: { (submissionResponse) in
                             // print(submissionResponse.request!)
                             
@@ -76,6 +83,8 @@ extension HNViewController {
         }
     }
 }
+
+// MARK: UITableViewCell
 
 extension HNTableViewCell {
     func timeAgoSinceDate(timeStamp: Double) -> String {
