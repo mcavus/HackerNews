@@ -22,7 +22,9 @@ extension HNViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "HNTableViewCell", for: indexPath) as? HNTableViewCell {
             cell.hnVC = self
-            cell.setData(s: submissions[indexPath.row])
+            if submissions.count != 0 {
+                cell.setData(s: submissions[indexPath.row])
+            }
             return cell
         }
         
@@ -51,6 +53,12 @@ extension HNViewController: UITableViewDelegate, UITableViewDataSource {
         
         hnTableView.rowHeight = UITableViewAutomaticDimension
         hnTableView.estimatedRowHeight = 120
+        
+        hnTableView.addSubview(refreshControl)
+    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.retrieveTopStories()
     }
 }
 
@@ -74,13 +82,14 @@ extension HNViewController {
     func extractSubmissionPropertiesFromJSON(json: JSON) {
         let s = Submission(title: json["title"].string!, url: json["url"].string, by: json["by"].string!, score: json["score"].int!, descendants: json["descendants"].int, time: json["time"].int!, id: json["id"].int!)
         submissions.append(s)
-        hnTableView.reloadData()
     }
     
     func retrieveTopStories() {
         let baseURL = "https://hacker-news.firebaseio.com/v0/"
         let endpoint = baseURL + "topstories" + ".json"
-        let submissionLimit = 29
+        let submissionLimit = 30
+        
+        submissions = []
         
         Alamofire.request(endpoint).responseJSON { (response) in
             // print(response.request!)
@@ -90,7 +99,7 @@ extension HNViewController {
                 if let responseValue = response.result.value {
                     let responseValueJSON = JSON(responseValue)
                     
-                    for i in 0...submissionLimit {
+                    for i in 0...(submissionLimit - 1) {
                         let submissionEndpoint = baseURL + "item/" + String(responseValueJSON[i].int!) + ".json"
                         Alamofire.request(submissionEndpoint).responseJSON(completionHandler: { (submissionResponse) in
                             // print(submissionResponse.request!)
@@ -101,6 +110,11 @@ extension HNViewController {
                                     let submissionResponseValueJSON = JSON(submissionResponseValue)
                                     
                                     self.extractSubmissionPropertiesFromJSON(json: submissionResponseValueJSON)
+                                    
+                                    if self.submissions.count == submissionLimit {
+                                        self.hnTableView.reloadData()
+                                        self.refreshControl.endRefreshing()
+                                    }
                                 }
                             case .failure(let submissionResponseError):
                                 print(submissionResponseError)
