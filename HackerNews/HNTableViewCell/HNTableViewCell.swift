@@ -30,9 +30,14 @@ class HNTableViewCell: UITableViewCell {
     
     func setData(s: Submission) {
         submissionID = s.id
-        
         titleLabel.text = s.title
-        urlLabel.text = s.url
+    
+        if let url = s.url {
+            urlLabel.text = url
+        } else {
+            urlLabel.text = "https://news.ycombinator.com/item?id=" + String(submissionID)
+        }
+        
         pointsAndByLabel.text = String(s.score) + " points by " + s.by
         timeLabel.text = self.timeAgoSinceDate(timeStamp: Double(s.time))
         

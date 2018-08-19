@@ -22,7 +22,7 @@ extension HNViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "HNTableViewCell", for: indexPath) as? HNTableViewCell {
             cell.hnVC = self
-            if submissions.count != 0 {
+            if submissions.indices.contains(indexPath.row) {
                 cell.setData(s: submissions[indexPath.row])
             }
             return cell
@@ -35,15 +35,21 @@ extension HNViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let s = submissions[indexPath.row]
-        if let url = s.url {
-            let safariVC = SFSafariViewController(url: URL(string: url)!)
-            
-            safariVC.delegate = self
-            safariVC.preferredBarTintColor = UIColor(red:0.96, green:0.96, blue:0.94, alpha:1.0)
-            safariVC.preferredControlTintColor = UIColor(red:1.00, green:0.40, blue:0.00, alpha:1.0)
-            
-            self.present(safariVC, animated: true, completion: nil)
+    
+        var url: URL?
+        if s.url != nil {
+            url = URL(string: s.url!)
+        } else {
+            url = URL(string: "https://news.ycombinator.com/item?id=" + String(s.id))
         }
+        
+        let safariVC = SFSafariViewController(url: url!)
+        
+        safariVC.delegate = self
+        safariVC.preferredBarTintColor = UIColor(red:0.96, green:0.96, blue:0.94, alpha:1.0)
+        safariVC.preferredControlTintColor = UIColor(red:1.00, green:0.40, blue:0.00, alpha:1.0)
+        
+        self.present(safariVC, animated: true, completion: nil)
     }
     
     func configureTableView() {

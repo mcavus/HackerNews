@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 
 class HNViewController: UIViewController {
     @IBOutlet weak var hnTableView: UITableView!
