@@ -6,6 +6,7 @@
 //  Copyright © 2018 Muhammed Cavusoglu. All rights reserved.
 //
 
+import SafariServices
 import Foundation
 import SwiftyJSON
 import Alamofire
@@ -20,6 +21,7 @@ extension HNViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "HNTableViewCell", for: indexPath) as? HNTableViewCell {
+            cell.hnVC = self
             cell.setData(s: submissions[indexPath.row])
             return cell
         }
@@ -32,7 +34,13 @@ extension HNViewController: UITableViewDelegate, UITableViewDataSource {
         
         let s = submissions[indexPath.row]
         if let url = s.url {
+            let safariVC = SFSafariViewController(url: URL(string: url)!)
             
+            safariVC.delegate = self
+            safariVC.preferredBarTintColor = UIColor(red:0.96, green:0.96, blue:0.94, alpha:1.0)
+            safariVC.preferredControlTintColor = UIColor(red:1.00, green:0.40, blue:0.00, alpha:1.0)
+            
+            self.present(safariVC, animated: true, completion: nil)
         }
     }
     
@@ -46,11 +54,25 @@ extension HNViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+// MARK: SFSafariViewControllerDelegate
+
+extension HNViewController: SFSafariViewControllerDelegate {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension HNTableViewCell: SFSafariViewControllerDelegate {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+}
+
 // MARK: API Calls
 
 extension HNViewController {    
     func extractSubmissionPropertiesFromJSON(json: JSON) {
-        let s = Submission(title: json["title"].string!, url: json["url"].string, by: json["by"].string!, score: json["score"].int!, descendants: json["descendants"].int, time: json["time"].int!)
+        let s = Submission(title: json["title"].string!, url: json["url"].string, by: json["by"].string!, score: json["score"].int!, descendants: json["descendants"].int, time: json["time"].int!, id: json["id"].int!)
         submissions.append(s)
         hnTableView.reloadData()
     }

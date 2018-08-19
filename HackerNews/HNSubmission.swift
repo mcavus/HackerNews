@@ -15,4 +15,5 @@ struct Submission {
     let score: Int
     let descendants: Int?
     let time: Int
+    let id: Int
 }
