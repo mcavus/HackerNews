@@ -2,6 +2,8 @@
 
 This is a simple reader app for [Hacker News](https://news.ycombinator.com). It uses the official [Firebase-based Hacker News API](https://github.com/HackerNews/API).
 
+<img src="screenshots.png" />
+
 ## Why?
 
 I wanted to explore some concepts and build an app in the open.
