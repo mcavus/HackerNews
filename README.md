@@ -17,7 +17,7 @@ I wanted to explore some concepts and build an app in the open.
 
 ## Open Source & Copying
 
-This app is available on the App Store for free, and licensed under [MIT](LICENSE). However, please do not ship this app under your own account. 
+This app is licensed under [MIT](LICENSE). However, please do not ship this app under your own account. 
 
 ## Contact
 
